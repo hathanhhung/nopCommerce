@@ -696,6 +696,12 @@ namespace Nop.Web.Factories
                 model.AvailableForPreOrder = !product.PreOrderAvailabilityStartDateTimeUtc.HasValue ||
                     product.PreOrderAvailabilityStartDateTimeUtc.Value >= DateTime.UtcNow;
                 model.PreOrderAvailabilityStartDateTimeUtc = product.PreOrderAvailabilityStartDateTimeUtc;
+
+                if (model.PreOrderAvailabilityStartDateTimeUtc.HasValue)
+                {
+                    model.PreOrderAvailabilityStartDateTimeUserTime =
+                        _dateTimeHelper.ConvertToUserTime(model.PreOrderAvailabilityStartDateTimeUtc.Value).ToString("D");
+                }
             }
             //rental
             model.IsRental = product.IsRental;
