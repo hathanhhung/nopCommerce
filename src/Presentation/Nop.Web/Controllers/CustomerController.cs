@@ -1633,12 +1633,12 @@ namespace Nop.Web.Controllers
             var model = _customerModelFactory.PrepareCheckGiftCardBalanceModel();
             return View(model);
         }
-
-        [HttpPost, ActionName("checkbalance")]
+        
+        [HttpPost, ActionName("CheckGiftCardBalance")]
         [FormValueRequired("checkbalancegiftcard")]
-        public virtual IActionResult CheckBalance(string giftcardcouponcode, IFormCollection form)
+        public virtual IActionResult CheckBalance(CheckGiftCardBalanceModel model)
         {
-            giftcardcouponcode = "789";
+            var giftcardcouponcode = model.Form["giftcardcouponcode"].ToString();
             //trim
             if (giftcardcouponcode != null)
                 giftcardcouponcode = giftcardcouponcode.Trim();
@@ -1649,13 +1649,13 @@ namespace Nop.Web.Controllers
                 .LimitPerStore(_storeContext.CurrentStore.Id)
                 .ToList();
 
-            var model = _customerModelFactory.PrepareCheckGiftCardBalanceModel();
+            model = _customerModelFactory.PrepareCheckGiftCardBalanceModel();
 
             if (!cart.IsRecurring())
             {
                 if (!string.IsNullOrWhiteSpace(giftcardcouponcode))
                 {
-                    var giftCard = _giftCardService.GetAllGiftCards(giftCardCouponCode: giftcardcouponcode).FirstOrDefault();                    
+                    var giftCard = _giftCardService.GetAllGiftCards(giftCardCouponCode: giftcardcouponcode).FirstOrDefault();
                     var isGiftCardValid = giftCard != null && giftCard.IsGiftCardValid();
                     if (isGiftCardValid)
                     {
