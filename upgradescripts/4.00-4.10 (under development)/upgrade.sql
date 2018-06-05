@@ -1181,6 +1181,9 @@ set @resources='
   <LocaleResource Name="CheckGiftCardBalance">
     <Value>Check gift card balance</Value>
   </LocaleResource>
+  <LocaleResource Name="CheckGiftCard.GiftCardCouponCode.Button">
+    <Value>Check gift card</Value>
+  </LocaleResource>
 </Language>
 '
 

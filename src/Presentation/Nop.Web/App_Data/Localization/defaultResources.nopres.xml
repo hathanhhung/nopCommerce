@@ -14211,6 +14211,9 @@
   <LocaleResource Name="CheckGiftCardBalance">
     <Value>Check gift card balance</Value>
   </LocaleResource>
+  <LocaleResource Name="CheckGiftCard.GiftCardCouponCode.Button">
+    <Value>Check gift card</Value>
+  </LocaleResource>
   <LocaleResource Name="Checkout">
     <Value>Checkout</Value>
   </LocaleResource>
@@ -17189,7 +17192,7 @@
   </LocaleResource>
   <LocaleResource Name="ShoppingCart.GiftCardCouponCode.Button">
     <Value>Add gift card</Value>
-  </LocaleResource>
+  </LocaleResource>  
   <LocaleResource Name="ShoppingCart.GiftCardCouponCode.DontWorkWithAutoshipProducts">
     <Value>You cannot use gift cards with auto-ship (recurring) items.</Value>
   </LocaleResource>

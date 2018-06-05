@@ -1634,7 +1634,7 @@ namespace Nop.Web.Controllers
             return View(model);
         }
 
-        [HttpPost, ActionName("checkbalance")]
+        [HttpPost, ActionName("CheckBalance")]
         [FormValueRequired("checkbalancegiftcard")]
         public virtual IActionResult CheckBalance(string giftcardcouponcode, IFormCollection form)
         {
