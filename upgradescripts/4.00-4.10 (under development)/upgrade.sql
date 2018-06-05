@@ -1184,6 +1184,9 @@ set @resources='
   <LocaleResource Name="CheckGiftCard.GiftCardCouponCode.Button">
     <Value>Check gift card</Value>
   </LocaleResource>
+  <LocaleResource Name="ShoppingCart.GiftCardCouponCode.WrongGiftCardEmpty">
+    <Value>The coupon code can not be empty</Value>
+  </LocaleResource>
 </Language>
 '
 

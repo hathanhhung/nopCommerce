@@ -43,11 +43,7 @@ namespace Nop.Web.Infrastructure
             routeBuilder.MapLocalizedRoute("ShoppingCart", "cart/",
 				new { controller = "ShoppingCart", action = "Cart" });
 
-            //check balance
-            routeBuilder.MapLocalizedRoute("CheckBalance", "customer/",
-                new { controller = "Customer", action = "CheckBalance" });
-
-            //check gift card balance Footer 
+            //check gift card balance 
             routeBuilder.MapLocalizedRoute("CheckGiftCardBalance", "customer",
                 new { controller = "Customer", action = "CheckGiftCardBalance" });
 

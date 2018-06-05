@@ -17202,6 +17202,9 @@
   <LocaleResource Name="ShoppingCart.GiftCardCouponCode.WrongGiftCard">
     <Value>The coupon code you entered couldn't be applied to your order</Value>
   </LocaleResource>
+  <LocaleResource Name="ShoppingCart.GiftCardCouponCode.WrongGiftCardEmpty">
+    <Value>The coupon code can not be empty</Value>
+  </LocaleResource>
   <LocaleResource Name="ShoppingCart.HeaderQuantity">
     <Value>({0})</Value>
   </LocaleResource>

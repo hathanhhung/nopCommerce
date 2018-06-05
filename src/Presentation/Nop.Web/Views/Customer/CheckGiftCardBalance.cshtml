@@ -38,7 +38,9 @@
                         @if (!string.IsNullOrEmpty(Model.Result))
                         {
                         <div class="result">
-                            @Model.Result
+                            <div class="cart-total">
+                                <span class="giftcard-remaining">@string.Format(T("ShoppingCart.Totals.GiftCardInfo.Remaining").Text, @Model.Result)</span>
+                            </div>
                         </div>
                         }
 

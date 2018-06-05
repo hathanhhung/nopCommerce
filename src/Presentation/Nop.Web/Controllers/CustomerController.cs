@@ -19,6 +19,7 @@ using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Tax;
 using Nop.Services.Authentication;
 using Nop.Services.Authentication.External;
+using Nop.Services.Catalog;
 using Nop.Services.Common;
 using Nop.Services.Customers;
 using Nop.Services.Directory;
@@ -58,6 +59,7 @@ namespace Nop.Web.Controllers
         private readonly IStoreContext _storeContext;
         private readonly ICustomerService _customerService;
         private readonly IGiftCardService _giftCardService;
+        private readonly IPriceFormatter _priceFormatter;
         private readonly ICustomerAttributeParser _customerAttributeParser;
         private readonly ICustomerAttributeService _customerAttributeService;
         private readonly IExportManager _exportManager;
@@ -102,6 +104,7 @@ namespace Nop.Web.Controllers
             IStoreContext storeContext,
             ICustomerService customerService,
             IGiftCardService giftCardService,
+            IPriceFormatter priceFormatter,
             ICustomerAttributeParser customerAttributeParser,
             ICustomerAttributeService customerAttributeService,
             IExportManager exportManager,
@@ -141,6 +144,7 @@ namespace Nop.Web.Controllers
             this._storeContext = storeContext;
             this._customerService = customerService;
             this._giftCardService = giftCardService;
+            this._priceFormatter = priceFormatter;
             this._customerAttributeParser = customerAttributeParser;
             this._customerAttributeService = customerAttributeService;
             this._exportManager = exportManager;
@@ -1654,12 +1658,13 @@ namespace Nop.Web.Controllers
             if (!cart.IsRecurring())
             {
                 if (!string.IsNullOrWhiteSpace(giftcardcouponcode))
-                {
+                {                    
                     var giftCard = _giftCardService.GetAllGiftCards(giftCardCouponCode: giftcardcouponcode).FirstOrDefault();
                     var isGiftCardValid = giftCard != null && giftCard.IsGiftCardValid();
                     if (isGiftCardValid)
                     {
-                        model.Result = giftCard.GetGiftCardRemainingAmount().ToString();
+                        model.Result = _priceFormatter.FormatPrice(giftCard.GetGiftCardRemainingAmount(), true, false);
+                        model.Message = string.Empty;
                     }
                     else
                     {
@@ -1668,7 +1673,7 @@ namespace Nop.Web.Controllers
                 }
                 else
                 {
-                    model.Message = _localizationService.GetResource("ShoppingCart.GiftCardCouponCode.WrongGiftCard");
+                    model.Message = _localizationService.GetResource("ShoppingCart.GiftCardCouponCode.WrongGiftCardEmpty");
                 }
             }
             else
