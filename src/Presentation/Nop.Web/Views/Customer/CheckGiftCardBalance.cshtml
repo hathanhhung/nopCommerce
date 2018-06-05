@@ -8,47 +8,54 @@
     Html.AppendPageCssClassParts("html-contact-page");
 }
 
-<div class="page">
-    <div class="page-title">
-        <h1>@T("PageTitle.CheckGiftCardBalance")</h1>
-    </div>
-    <div class="page-body">
-        <div class="cart-collaterals">
-            <div class="deals">
-                <div class="giftcard-box">
-                    <div class="hint">@T("ShoppingCart.GiftCardCouponCode.Tooltip")</div>
-                    <div class="coupon-code">
-                        <input name="giftcardcouponcode" id="giftcardcouponcode" type="text" class="gift-card-coupon-code" />
-                        <input type="submit" name="checkbalancegiftcard" id="checkbalancegiftcard" value="@T("CheckGiftCard.GiftCardCouponCode.Button")" class="button-2 apply-gift-card-coupon-code-button" />
-                    </div>
+<form asp-controller="Customer" asp-action="CheckGiftCardBalance" method="post">
+    <div class="page contact-page">
+        <div class="page-title">
+            <h1>@T("PageTitle.CheckGiftCardBalance")</h1>
+        </div>
+        <div class="page-body">
+            <div class="cart-collaterals">
+                <div class="deals">
+                    <div class="giftcard-box">
+                        @*<div class="title">
+                            <strong>@T("ShoppingCart.GiftCardCouponCode")</strong>
+                        </div>*@
 
-                    @if (!string.IsNullOrEmpty(Model.Message))
-                    {
+                        <div class="hint">@T("ShoppingCart.GiftCardCouponCode.Tooltip")</div>
+                        <div class="coupon-code">
+                            <input name="giftcardcouponcode" id="giftcardcouponcode" type="text" class="gift-card-coupon-code" />
+                            <button type="submit" name="checkbalancegiftcard" id="checkbalancegiftcard" class="button-2 apply-gift-card-coupon-code-button">
+                                @T("ShoppingCart.GiftCardCouponCode.Button")
+                            </button>
+                        </div>
+
+                        @if (!string.IsNullOrEmpty(Model.Message))
+                        {
                         <div class="message-failure">
                             @Model.Message
                         </div>
-                    }
-                    @if (!string.IsNullOrEmpty(Model.Result))
-                    {
+                        }
+                        @if (!string.IsNullOrEmpty(Model.Result))
+                        {
                         <div class="result">
                             @Model.Result
                         </div>
-                    }
+                        }
+
+                    </div>
+                    <script asp-location="Footer">
+                $(document).ready(function () {
+                    $('#giftcardcouponcode').keydown(function (event) {
+                        if (event.keyCode == 13) {
+                            $('#checkbalancegiftcard').click();
+                            return false;
+                        }
+                    });
+                });
+                    </script>
 
                 </div>
-                <script asp-location="Footer">
-                    $(document).ready(function () {
-                        $('#giftcardcouponcode').keydown(function (event) {
-                            if (event.keyCode == 13) {
-                                $('#checkbalancegiftcard').click();
-                                return false;
-                            }
-                        });
-                    });
-                </script>
-
             </div>
         </div>
     </div>
- </div>
-
+</form>
