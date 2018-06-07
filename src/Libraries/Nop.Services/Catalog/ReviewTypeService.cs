@@ -72,6 +72,7 @@ namespace Nop.Services.Catalog
         /// </summary>
         /// <param name="cacheManager">Cache manager</param>
         /// <param name="reviewTypeRepository">Review type repository</param>
+        /// <param name="productReviewReviewTypeMappingRepository">Product review and review type mapping repository</param>
         /// <param name="eventPublisher">Event published</param>
         public ReviewTypeService(IStaticCacheManager cacheManager,
             IRepository<ReviewType> reviewTypeRepository,
@@ -171,25 +172,6 @@ namespace Nop.Services.Catalog
         #region Product review review type mapping
 
         /// <summary>
-        /// Deletes a product review and review type mapping
-        /// </summary>
-        /// <param name="productReviewReviewTypeMapping">Product review and review type mapping</param>
-        public void DeleteProductReviewReviewTypeMapping(ProductReviewReviewTypeMapping productReviewReviewTypeMapping)
-        {
-            if (productReviewReviewTypeMapping == null)
-                throw new ArgumentNullException(nameof(productReviewReviewTypeMapping));
-
-            _productReviewReviewTypeMappingRepository.Delete(productReviewReviewTypeMapping);
-
-            //cache
-            _cacheManager.RemoveByPattern(REVIEW_TYPE_PATTERN_KEY);
-            _cacheManager.RemoveByPattern(PRODUCT_REVIEW_REVIEW_TYPE_MAPPING_PATTERN_KEY);
-
-            //event notification
-            _eventPublisher.EntityDeleted(productReviewReviewTypeMapping);
-        }
-
-        /// <summary>
         /// Gets product review and review type mappings by product review identifier
         /// </summary>
         /// <param name="productReviewId">The product review identifier</param>
@@ -207,58 +189,6 @@ namespace Nop.Services.Catalog
                 var productAttributeMappings = query.ToList();
                 return productAttributeMappings;
             });
-        }
-        
-        /// <summary>
-        /// Gets a product review and review type mapping
-        /// </summary>
-        /// <param name="productReviewReviewTypeMappingId">Product review and review type mapping identifier</param>
-        /// <returns>Product review and review type mapping</returns>
-        public ProductReviewReviewTypeMapping GetProductReviewReviewTypeMappingById(int productReviewReviewTypeMappingId)
-        {
-            if (productReviewReviewTypeMappingId == 0)
-                return null;
-
-            var key = string.Format(PRODUCT_REVIEW_REVIEW_TYPE_MAPPING_BY_ID_KEY, productReviewReviewTypeMappingId);
-            return _cacheManager.Get(key, () => _productReviewReviewTypeMappingRepository.GetById(productReviewReviewTypeMappingId));
-        }
-
-        /// <summary>
-        /// Inserts a product review and review type mapping
-        /// </summary>
-        /// <param name="productReviewReviewTypeMapping">Product review and review type mapping</param>
-        public void InsetrProductReviewReviewTypeMapping(ProductReviewReviewTypeMapping productReviewReviewTypeMapping)
-        {
-            if (productReviewReviewTypeMapping == null)
-                throw new ArgumentNullException(nameof(productReviewReviewTypeMapping));
-
-            _productReviewReviewTypeMappingRepository.Insert(productReviewReviewTypeMapping);
-
-            //cache
-            _cacheManager.RemoveByPattern(REVIEW_TYPE_PATTERN_KEY);
-            _cacheManager.RemoveByPattern(PRODUCT_REVIEW_REVIEW_TYPE_MAPPING_PATTERN_KEY);
-
-            //event notification
-            _eventPublisher.EntityInserted(productReviewReviewTypeMapping);
-        }
-
-        /// <summary>
-        /// Updates the product review and review type mapping
-        /// </summary>
-        /// <param name="productReviewReviewTypeMapping">Product review and review type mapping</param>
-        public void UpdateProductReviewReviewTypeMapping(ProductReviewReviewTypeMapping productReviewReviewTypeMapping)
-        {
-            if (productReviewReviewTypeMapping == null)
-                throw new ArgumentNullException(nameof(productReviewReviewTypeMapping));
-
-            _productReviewReviewTypeMappingRepository.Update(productReviewReviewTypeMapping);
-
-            //cache
-            _cacheManager.RemoveByPattern(REVIEW_TYPE_PATTERN_KEY);
-            _cacheManager.RemoveByPattern(PRODUCT_REVIEW_REVIEW_TYPE_MAPPING_PATTERN_KEY);
-
-            //event notification
-            _eventPublisher.EntityUpdated(productReviewReviewTypeMapping);
         }
 
         #endregion

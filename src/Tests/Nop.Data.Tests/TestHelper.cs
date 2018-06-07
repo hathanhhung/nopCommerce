@@ -361,21 +361,6 @@ namespace Nop.Data.Tests
             };
         }
 
-        public static ProductReviewReviewTypeMapping GetTestProductReviewReviewTypeMapping(this PersistenceTest test)
-        {
-            var testProductReview = test.GetTestProductReview();
-            var testReviewType = test.GetTestReviewType();
-
-            return new ProductReviewReviewTypeMapping
-            {
-                Rating = 5,
-                ProductReview = testProductReview,
-                ProductReviewId = testProductReview.Id,
-                ReviewType = testReviewType,
-                ReviewTypeId = testReviewType.Id
-            };
-        }
-
         public static ProductReview GetTestProductReview(this PersistenceTest test)
         {
             var testProduct = test.GetTestProduct();
@@ -409,7 +394,6 @@ namespace Nop.Data.Tests
                 Name = "TestName",
                 Description = "TestDescription",
                 DisplayOrder = 1,
-                IsRequired = true,
                 VisibleToAllCustomers = true
             };
         }

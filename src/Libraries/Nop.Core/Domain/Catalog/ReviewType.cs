@@ -26,10 +26,5 @@ namespace Nop.Core.Domain.Catalog
         /// Gets or sets a value indicating whether the review type is visible to all customers
         /// </summary>
         public bool VisibleToAllCustomers { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether the review type is required
-        /// </summary>
-        public bool IsRequired { get; set; }      
     }
 }

@@ -55,12 +55,12 @@ namespace Nop.Web.Areas.Admin.Factories
         private readonly IMaintenanceService _maintenanceService;
         private readonly IPictureService _pictureService;
         private readonly IReturnRequestModelFactory _returnRequestModelFactory;
+        private readonly IReviewTypeModelFactory _reviewTypeModelFactory;
         private readonly ISettingService _settingService;
         private readonly IStoreContext _storeContext;
         private readonly IStoreService _storeService;
         private readonly IThemeProvider _themeProvider;
         private readonly IVendorAttributeModelFactory _vendorAttributeModelFactory;
-        private readonly IReviewTypeModelFactory _reviewTypeModelFactory;
         private readonly IWorkContext _workContext;
 
         #endregion

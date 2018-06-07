@@ -25,7 +25,7 @@ namespace Nop.Web.Models.Catalog
             Items = new List<ProductReviewModel>();
             AddProductReview = new AddProductReviewModel();
             ReviewTypeList = new List<ReviewTypeModel>();
-            AddProductReviewExtList = new List<AddProductReviewReviewTypeMappingModel>();
+            AddAdditionalProductReviewList = new List<AddProductReviewReviewTypeMappingModel>();
             AverageRating = new Dictionary<int, double>();
         }
 
@@ -41,7 +41,7 @@ namespace Nop.Web.Models.Catalog
 
         public IList<ReviewTypeModel> ReviewTypeList { get; set; }
 
-        public IList<AddProductReviewReviewTypeMappingModel> AddProductReviewExtList { get; set; }
+        public IList<AddProductReviewReviewTypeMappingModel> AddAdditionalProductReviewList { get; set; }
 
         public IDictionary<int, double> AverageRating { get; set; }
     }
@@ -54,8 +54,6 @@ namespace Nop.Web.Models.Catalog
 
         public int DisplayOrder { get; set; }
 
-        public bool IsRequired { get; set; }
-
         public bool Deleted { get; set; }
 
         public bool VisibleToAllCustomers { get; set; }
@@ -65,7 +63,7 @@ namespace Nop.Web.Models.Catalog
     {
         public ProductReviewModel()
         {
-            ProductReviewExtList = new List<ProductReviewReviewTypeMappingModel>();
+            AdditionalProductReviewList = new List<ProductReviewReviewTypeMappingModel>();
         }
 
         public int CustomerId { get; set; }
@@ -86,7 +84,7 @@ namespace Nop.Web.Models.Catalog
 
         public ProductReviewHelpfulnessModel Helpfulness { get; set; }
 
-        public IList<ProductReviewReviewTypeMappingModel> ProductReviewExtList { get; set; }
+        public IList<ProductReviewReviewTypeMappingModel> AdditionalProductReviewList { get; set; }
     }
 
     public partial class ProductReviewHelpfulnessModel : BaseNopModel

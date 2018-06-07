@@ -985,13 +985,7 @@ set @resources='
   </LocaleResource>
   <LocaleResource Name="Admin.Settings.ReviewType.Fields.DisplayOrder.Hint">
     <Value>The review type display order. 1 represents the first item in the list.</Value>
-  </LocaleResource>
-  <LocaleResource Name="Admin.Settings.ReviewType.Fields.IsRequired">
-    <Value>Required</Value>
-  </LocaleResource>
-  <LocaleResource Name="Admin.Settings.ReviewType.Fields.IsRequired.Hint">
-    <Value>When an attribute is required, the customer must choose an appropriate attribute value before they can continue.</Value>
-  </LocaleResource>
+  </LocaleResource>  
   <LocaleResource Name="Admin.Settings.ReviewType.Fields.Name">
     <Value>Name</Value>
   </LocaleResource>
@@ -1019,16 +1013,16 @@ set @resources='
   <LocaleResource Name="ActivityLog.DeleteReviewType">
    <Value>Deleted a review type (ID = {0})</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.ProductReviewsExt.Fields.Description">
+  <LocaleResource Name="Admin.Catalog.AdditionalProductReviews.Fields.Description">
     <Value>Description</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.ProductReviewsExt.Fields.Name">
+  <LocaleResource Name="Admin.Catalog.AdditionalProductReviews.Fields.Name">
     <Value>Name</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.ProductReviewsExt.Fields.Rating">
+  <LocaleResource Name="Admin.Catalog.AdditionalProductReviews.Fields.Rating">
     <Value>Rating</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.ProductReviewsExt.Fields.VisibleToAllCustomers">
+  <LocaleResource Name="Admin.Catalog.AdditionalProductReviews.Fields.VisibleToAllCustomers">
     <Value>Visible to all customers</Value>
   </LocaleResource>
 </Language>
@@ -2644,7 +2638,6 @@ BEGIN
 	[Description] [nvarchar](max) NOT NULL,
 	[DisplayOrder] [int] NOT NULL,	
 	[VisibleToAllCustomers] [bit] NOT NULL,
-	[IsRequired] [bit] NOT NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC

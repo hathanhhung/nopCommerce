@@ -29,9 +29,9 @@ namespace Nop.Web.Areas.Admin.Controllers
         private readonly IPermissionService _permissionService;
         private readonly IProductReviewModelFactory _productReviewModelFactory;
         private readonly IProductService _productService;
+        private readonly IReviewTypeService _reviewTypeService;
         private readonly IWorkContext _workContext;
         private readonly IWorkflowMessageService _workflowMessageService;
-        private readonly IReviewTypeService _reviewTypeService;
 
         #endregion Fields
 

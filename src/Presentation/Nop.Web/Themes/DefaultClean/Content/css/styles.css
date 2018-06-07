@@ -2399,7 +2399,8 @@ label, label + * {
 }
 lable.tip {
     border-bottom: 1px dashed;
-    text-decoration: none
+    text-decoration: none;
+    color: #444;
 }
 
 lable.tip:hover {
@@ -2426,7 +2427,7 @@ lable.tip:hover p {
     text-decoration: none
 }
 .write-review .review-rating {
-    text-align: center;
+    text-align: left;
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -2434,6 +2435,7 @@ lable.tip:hover p {
     display: block;
     margin: 0 0 5px;
     font-size: 14px;
+    color: #444;
 }
 .write-review .review-rating div.first {
 	color: #e4444c;
@@ -5106,8 +5108,7 @@ pre {
     }
 
     .write-review .review-rating div{
-        text-align: center;        
-        
+        text-align: center;
         padding-bottom: 10px;
         display: inline-block;
     }
@@ -5288,6 +5289,15 @@ pre {
 .block-account-navigation {
 	float: none;
 	margin: auto !important;
+}
+.write-review .review-rating {
+   text-align: center;
+}
+
+.write-review .review-rating div.name-description {
+    width: 100%;
+    margin: 0 10px 0 0;
+    text-align: center;
 }
 
 }
@@ -5694,17 +5704,14 @@ pre {
 
 .write-review .review-rating div {
     display: inline-block;
-    margin: 0 5px;
+    margin: 0 5px 0 0;
     cursor: default;
     vertical-align: middle;
     font-size: 14px;
     height: 17px;
 }
 
-.write-review .review-rating div.name-description {
-    width: 15%;
-    text-align: right
-}
+
 
 
 /*** REGISTRATION, LOGIN, ACCOUNT ***/
@@ -6599,6 +6606,12 @@ pre {
 	max-width: 850px;
 }
 
+.write-review .review-rating div.name-description {
+    width: 265px;
+    margin: 0 10px 0 0;
+    text-align: right
+}
+
 
 /*** WISHLIST & COMPARE LIST ***/
 
@@ -6914,6 +6927,11 @@ pre {
 
 .product-review-item .review-title {
 	max-width: 1050px;
+}
+
+.write-review .review-rating div.name-description {
+    margin: 0 10px 0 0;
+    min-width: 375px;
 }
 
 

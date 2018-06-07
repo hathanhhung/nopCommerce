@@ -203,7 +203,7 @@ namespace Nop.Web.Areas.Admin.Factories
         /// <param name="searchModel">Product review mapping search model</param>
         /// <param name="productReview">Product</param>
         /// <returns>Product review mapping search model</returns>
-        protected virtual ProductReviewReviewTypeMappingSearchModel PrepareProductReviewReviewTypeMappingSearchModel(ProductReviewReviewTypeMappingSearchModel searchModel,
+        public virtual ProductReviewReviewTypeMappingSearchModel PrepareProductReviewReviewTypeMappingSearchModel(ProductReviewReviewTypeMappingSearchModel searchModel,
             ProductReview productReview)
         {
             if (searchModel == null)
@@ -251,9 +251,11 @@ namespace Nop.Web.Areas.Admin.Factories
                     };
 
                     //fill in additional values (not existing in the entity)
-                    productReviewReviewTypeMappingModel.Name = _reviewTypeService.GetReviewTypeById(attributeMapping.ReviewTypeId)?.Name;
-                    productReviewReviewTypeMappingModel.Description = _reviewTypeService.GetReviewTypeById(attributeMapping.ReviewTypeId)?.Description;
-                    productReviewReviewTypeMappingModel.VisibleToAllCustomers = _reviewTypeService.GetReviewTypeById(attributeMapping.ReviewTypeId).VisibleToAllCustomers;
+                    var reviewType = _reviewTypeService.GetReviewTypeById(attributeMapping.ReviewTypeId);
+
+                    productReviewReviewTypeMappingModel.Name = reviewType.GetLocalized(entity => entity.Name);
+                    productReviewReviewTypeMappingModel.Description = reviewType.GetLocalized(entity => entity.Description);
+                    productReviewReviewTypeMappingModel.VisibleToAllCustomers = reviewType.VisibleToAllCustomers;
 
                     return productReviewReviewTypeMappingModel;
                 }),
@@ -285,9 +287,11 @@ namespace Nop.Web.Areas.Admin.Factories
                     Id = productReviewReviewTypeMapping.Id
                 };
 
-                model.Name = _reviewTypeService.GetReviewTypeById(productReviewReviewTypeMapping.ReviewTypeId).Name;
-                model.Description = _reviewTypeService.GetReviewTypeById(productReviewReviewTypeMapping.ReviewTypeId).Description;
-                model.VisibleToAllCustomers = _reviewTypeService.GetReviewTypeById(productReviewReviewTypeMapping.ReviewTypeId).VisibleToAllCustomers;
+                var reviewType = _reviewTypeService.GetReviewTypeById(productReviewReviewTypeMapping.ReviewTypeId);
+
+                model.Name = reviewType.GetLocalized(entity => entity.Name);
+                model.Description = reviewType.GetLocalized(entity => entity.Description);
+                model.VisibleToAllCustomers = reviewType.VisibleToAllCustomers;
 
                 if (!excludeProperties)
                 {

@@ -13,7 +13,7 @@ using Nop.Web.Framework.Mvc.Filters;
 namespace Nop.Web.Areas.Admin.Controllers
 {
     /// <summary>
-    /// Reperesent a review type controller
+    /// Represent a review type controller
     /// </summary>
     public partial class ReviewTypeController : BaseAdminController
     {
@@ -80,7 +80,7 @@ namespace Nop.Web.Areas.Admin.Controllers
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageSettings))
                 return AccessDeniedView();
 
-            //we just redirect a user to the vendor settings page
+            //we just redirect a user to the catalog settings page
             return RedirectToAction("Catalog", "Setting");
         }
 
@@ -219,6 +219,7 @@ namespace Nop.Web.Areas.Admin.Controllers
                 return RedirectToAction("Edit", new { id = reviewType.Id });
             }            
         }
+
         #endregion
     }
 }

@@ -291,9 +291,9 @@ namespace Nop.Web.Controllers
             
             //default value for all review types
             if (model.ReviewTypeList.Count > 0)
-                foreach (var productReviewExt in model.AddProductReviewExtList)
+                foreach (var additionalProductReview in model.AddAdditionalProductReviewList)
                 {
-                    productReviewExt.Rating = _catalogSettings.DefaultProductRatingValue;
+                    additionalProductReview.Rating = _catalogSettings.DefaultProductRatingValue;
                 }
 
             return View(model);
@@ -355,15 +355,15 @@ namespace Nop.Web.Controllers
                 product.ProductReviews.Add(productReview);
 
                 //add product review and review type mapping                
-                foreach (var reviewExt in model.AddProductReviewExtList)
+                foreach (var additionalReview in model.AddAdditionalProductReviewList)
                 {
-                    var productReviewExt = new ProductReviewReviewTypeMapping
+                    var additionalProductReview = new ProductReviewReviewTypeMapping
                     {
                         ProductReviewId = productReview.Id,                        
-                        ReviewTypeId = reviewExt.ReviewTypeId,
-                        Rating = reviewExt.Rating
+                        ReviewTypeId = additionalReview.ReviewTypeId,
+                        Rating = additionalReview.Rating
                     };
-                    productReview.ProductReviewReviewTypeMappingEntries.Add(productReviewExt);
+                    productReview.ProductReviewReviewTypeMappingEntries.Add(additionalProductReview);
                 }
 
                 //update product totals
@@ -382,6 +382,7 @@ namespace Nop.Web.Controllers
                     _eventPublisher.Publish(new ProductReviewApprovedEvent(productReview));
 
                 model = _productModelFactory.PrepareProductReviewsModel(model, product);
+                model = _productModelFactory.CalcAverageReviewRating(model);
                 model.AddProductReview.Title = null;
                 model.AddProductReview.ReviewText = null;
 

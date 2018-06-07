@@ -2556,16 +2556,16 @@
   <LocaleResource Name="Admin.Catalog.ProductReviews.Updated">
     <Value>The product review has been updated successfully.</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.ProductReviewsExt.Fields.Description">
+  <LocaleResource Name="Admin.Catalog.AdditionalProductReviews.Fields.Description">
     <Value>Description</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.ProductReviewsExt.Fields.Name">
+  <LocaleResource Name="Admin.Catalog.AdditionalProductReviews.Fields.Name">
     <Value>Name</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.ProductReviewsExt.Fields.Rating">
+  <LocaleResource Name="Admin.Catalog.AdditionalProductReviews.Fields.Rating">
     <Value>Rating</Value>
   </LocaleResource>
-  <LocaleResource Name="Admin.Catalog.ProductReviewsExt.Fields.VisibleToAllCustomers">
+  <LocaleResource Name="Admin.Catalog.AdditionalProductReviews.Fields.VisibleToAllCustomers">
     <Value>Visible to all customers</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Catalog.Products">
@@ -12948,7 +12948,6 @@
   <LocaleResource Name="Admin.SearchTermReport.Keyword">
     <Value>Keyword</Value>
   </LocaleResource>
-<!--Review type-->
   <LocaleResource Name="Admin.Settings.ReviewType">
     <Value>Review types</Value>
   </LocaleResource>
@@ -12984,12 +12983,6 @@
   </LocaleResource>
   <LocaleResource Name="Admin.Settings.ReviewType.Fields.DisplayOrder.Hint">
     <Value>The review type display order. 1 represents the first item in the list.</Value>
-  </LocaleResource>
-  <LocaleResource Name="Admin.Settings.ReviewType.Fields.IsRequired">
-    <Value>Required</Value>
-  </LocaleResource>
-  <LocaleResource Name="Admin.Settings.ReviewType.Fields.IsRequired.Hint">
-    <Value>When an attribute is required, the customer must choose an appropriate attribute value before they can continue.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Settings.ReviewType.Fields.Name">
     <Value>Name</Value>

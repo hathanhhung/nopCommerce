@@ -18,7 +18,6 @@ namespace Nop.Web.Areas.Admin.Factories
         #region Fields
         
         private readonly IReviewTypeService _reviewTypeService;
-        private readonly ILocalizationService _localizationService;
         private readonly ILocalizedModelFactory _localizedModelFactory;
 
         #endregion
@@ -27,12 +26,11 @@ namespace Nop.Web.Areas.Admin.Factories
 
         public ReviewTypeModelFactory(
             ILocalizedModelFactory localizedModelFactory,
-            IReviewTypeService reviewTypeService,
-            ILocalizationService localizationService)
+            IReviewTypeService reviewTypeService
+            )
         {
             this._localizedModelFactory = localizedModelFactory;
             this._reviewTypeService = reviewTypeService;
-            this._localizationService = localizationService;
         }
 
         #endregion
@@ -80,7 +78,7 @@ namespace Nop.Web.Areas.Admin.Factories
         }
 
         /// <summary>
-        /// Prepare reiew type model
+        /// Prepare review type model
         /// </summary>
         /// <param name="model">Review type model</param>
         /// <param name="reviewType">Review type</param>
@@ -110,6 +108,7 @@ namespace Nop.Web.Areas.Admin.Factories
 
             return model;
         }
+
         #endregion
     }
 }

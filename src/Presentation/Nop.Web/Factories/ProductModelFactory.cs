@@ -1413,11 +1413,10 @@ namespace Nop.Web.Factories
                 model.ReviewTypeList.Add(new ReviewTypeModel
                 {
                     Id = reviewType.Id,
-                    Name = reviewType.Name,
-                    Description = reviewType.Description,
+                    Name = reviewType.GetLocalized(entity => entity.Name),
+                    Description = reviewType.GetLocalized(entity => entity.Description),
                     VisibleToAllCustomers = reviewType.VisibleToAllCustomers,
                     DisplayOrder = reviewType.DisplayOrder,
-                    IsRequired = reviewType.IsRequired,
                 });
             }            
 
@@ -1446,12 +1445,12 @@ namespace Nop.Web.Factories
 
                 foreach (var q in _reviewTypeService.GetProductAttributeMappingsByProductReviewId(pr.Id))
                 {                  
-                    producReviewModel.ProductReviewExtList.Add(new ProductReviewReviewTypeMappingModel
+                    producReviewModel.AdditionalProductReviewList.Add(new ProductReviewReviewTypeMappingModel
                     {
                         ReviewTypeId = q.ReviewTypeId,
                         ProductReviewId = pr.Id,
                         Rating = q.Rating,
-                        Name = q.ReviewType.Name,
+                        Name = q.ReviewType.GetLocalized(x => x.Name),
                         VisibleToAllCustomers = q.ReviewType.VisibleToAllCustomers,
                     });
                 }               
@@ -1461,21 +1460,40 @@ namespace Nop.Web.Factories
 
             foreach (var rt in model.ReviewTypeList)
             {
-                var reviewTypeMappingModel = new AddProductReviewReviewTypeMappingModel                
+                if (model.ReviewTypeList.Count <= model.AddAdditionalProductReviewList.Count) continue;
+                var reviewType = _reviewTypeService.GetReviewTypeById(rt.Id);
+                var reviewTypeMappingModel = new AddProductReviewReviewTypeMappingModel
                 {
                     ReviewTypeId = rt.Id,
-                    Name = rt.Name,
-                    Description = rt.Description,
+                    Name = reviewType.GetLocalized(entity => entity.Name),
+                    Description = reviewType.GetLocalized(entity => entity.Description),
                     DisplayOrder = rt.DisplayOrder,
                 };
-                model.AddProductReviewExtList.Add(reviewTypeMappingModel);
 
+                model.AddAdditionalProductReviewList.Add(reviewTypeMappingModel);
+            }
+
+            model.AddProductReview.CanCurrentCustomerLeaveReview = _catalogSettings.AllowAnonymousUsersToReviewProduct || !_workContext.CurrentCustomer.IsGuest();
+            model.AddProductReview.DisplayCaptcha = _captchaSettings.Enabled && _captchaSettings.ShowOnProductReviewPage;
+
+            return model;
+        }
+
+        /// <summary>
+        /// Calculate average review rating
+        /// </summary>
+        /// <param name="model">Product reviews model</param>
+        /// <returns>Product reviews model</returns>
+        public virtual ProductReviewsModel CalcAverageReviewRating(ProductReviewsModel model)
+        {
+            foreach (var rt in model.AddAdditionalProductReviewList)
+            {
                 //Average rating
                 var totalRating = 0;
                 var totalCount = 0;
                 foreach (var item in model.Items)
                 {
-                    foreach (var q in item.ProductReviewExtList.Where(w => w.ReviewTypeId == rt.Id))
+                    foreach (var q in item.AdditionalProductReviewList.Where(w => w.ReviewTypeId == rt.Id))
                     {
                         totalRating += q.Rating;
                         totalCount = ++totalCount;
@@ -1484,11 +1502,7 @@ namespace Nop.Web.Factories
 
                 model.AverageRating.Add(rt.Id, value: (double)totalRating / (totalCount > 0 ? totalCount : 1));
             }
-
-            model.AddProductReview.CanCurrentCustomerLeaveReview = _catalogSettings.AllowAnonymousUsersToReviewProduct || !_workContext.CurrentCustomer.IsGuest();
-            model.AddProductReview.DisplayCaptcha = _captchaSettings.Enabled && _captchaSettings.ShowOnProductReviewPage;
-
-            return model;
+                return model;
         }
 
         /// <summary>
