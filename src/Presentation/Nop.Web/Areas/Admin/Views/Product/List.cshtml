@@ -200,7 +200,7 @@
                                                 url: "@Html.Raw(Url.Action("ProductList", "Product"))",
                                                 type: "POST",
                                                 dataType: "json",
-                                                data: function() {
+                                                data: function () {
                                                     var data = {
                                                         SearchProductName: $('#@Html.IdFor(model => model.SearchProductName)').val(),
                                                         SearchCategoryId: $('#SearchCategoryId').val(),
@@ -222,7 +222,7 @@
                                             total: "Total",
                                             errors: "Errors"
                                         },
-                                        error: function(e) {
+                                        error: function (e) {
                                             display_kendoui_grid_error(e);
                                             // Cancel the changes
                                             this.cancelChanges();
@@ -261,6 +261,10 @@
                                         {
                                             field: "Name",
                                             title: "@T("Admin.Catalog.Products.Fields.Name")",
+                                            width: 300
+                                        }, {                                        
+                                            field: "Author",
+                                            title: "@T("Admin.Catalog.Products.Fields.Author")",
                                             width: 300
                                         }, {
                                             field: "Sku",

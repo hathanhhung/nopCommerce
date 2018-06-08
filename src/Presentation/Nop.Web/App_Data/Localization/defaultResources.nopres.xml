@@ -3069,6 +3069,15 @@
   <LocaleResource Name="Admin.Catalog.Products.Fields.Name.Required">
     <Value>Please provide a name.</Value>
   </LocaleResource>
+  <LocaleResource Name="Admin.Catalog.Products.Fields.Author">
+    <Value>Author name</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Catalog.Products.Fields.Author.Hint">
+    <Value>The name of the Author.</Value>
+  </LocaleResource>  
+  <LocaleResource Name="Admin.Catalog.Products.Fields.Author.Required">
+    <Value>Please provide author name.</Value>
+  </LocaleResource>
   <LocaleResource Name="Admin.Catalog.Products.Fields.NotifyAdminForQuantityBelow">
     <Value>Notify for qty below</Value>
   </LocaleResource>

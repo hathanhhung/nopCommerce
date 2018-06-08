@@ -5614,6 +5614,11 @@ pre {
 	padding: 10px 0;
 	font-size: 18px;
 }
+.product-list .item-box .author {
+	display: block;
+	margin: 0 0 10px;
+	line-height: 22px;
+}
 .product-list .item-box .description {
 	display: block;
 	margin: 0 0 10px;

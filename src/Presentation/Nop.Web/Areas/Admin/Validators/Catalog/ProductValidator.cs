@@ -13,6 +13,8 @@ namespace Nop.Web.Areas.Admin.Validators.Catalog
         {
             RuleFor(x => x.Name).NotEmpty().WithMessage(localizationService.GetResource("Admin.Catalog.Products.Fields.Name.Required"));
 
+            RuleFor(x => x.Author).NotEmpty().WithMessage(localizationService.GetResource("Admin.Catalog.Products.Fields.Author.Required"));
+
             SetDatabaseValidationRules<Product>(dbContext);
         }
     }
